@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
+
     <style>
         :root {
             --bg-main: #f4f6f8; 
@@ -60,7 +62,7 @@
         .variant-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; line-height: 1.4; font-weight: 600;}
         .variant-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; color: var(--text-dark); font-weight: 700; margin-bottom: 5px;}
 
-        /* MODALE PERSONALIZZAZIONE */
+        /* MODALE PERSONALIZZAZIONE (STILE OPZIONI) */
         .custom-section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--text-dark); margin: 25px 0 10px; font-size: 1.1rem; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-light); padding-bottom: 5px;}
         .custom-section-title:first-child { margin-top: 0; }
         .badge-req { font-size: 0.65rem; background: var(--text-dark); color: #fff; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: 700;}
@@ -135,6 +137,9 @@
         .upsell-btn { white-space: nowrap; background: rgba(211, 47, 47, 0.1); color: var(--accent-main); border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: 0.2s; font-family: 'Montserrat', sans-serif;}
         .upsell-btn:active { background: var(--accent-main); color: #fff; transform: scale(0.95);}
 
+        /* WIDGET SUMUP CONTAINER */
+        #sumup-card-container { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid var(--border-light); text-align: center;}
+        
         @media (min-width: 768px) {
             .filters-container { justify-content: center; flex-wrap: wrap; overflow-x: visible; padding: 20px; border-bottom: 1px solid var(--border-light); }
             .filter-btn { font-size: 1rem; padding: 10px 24px; }
@@ -186,63 +191,69 @@
             
             <div class="modal-body">
                 
-                <div id="cart-items-summary" class="cart-summary-box"></div>
+                <div id="dati-cliente-form">
+                    <div id="cart-items-summary" class="cart-summary-box"></div>
 
-                <div id="upsell-container"></div>
+                    <div id="upsell-container"></div>
 
-                <div class="type-toggle">
-                    <label id="lbl-takeaway" class="active">
-                        <input type="radio" name="order-type" value="takeaway" checked onchange="toggleOrderType()">
-                        🛍️ Asporto
-                    </label>
-                    <label id="lbl-delivery">
-                        <input type="radio" name="order-type" value="delivery" onchange="toggleOrderType()">
-                        🛵 Domicilio
-                    </label>
-                </div>
+                    <div class="type-toggle">
+                        <label id="lbl-takeaway" class="active">
+                            <input type="radio" name="order-type" value="takeaway" checked onchange="toggleOrderType()">
+                            🛍️ Asporto
+                        </label>
+                        <label id="lbl-delivery">
+                            <input type="radio" name="order-type" value="delivery" onchange="toggleOrderType()">
+                            🛵 Domicilio
+                        </label>
+                    </div>
 
-                <div class="form-group"><label>Nome e Cognome *</label><input type="text" id="cust-name" required></div>
-                <div class="form-group"><label>Telefono *</label><input type="tel" id="cust-phone" required></div>
-				
-                <div class="form-group">
-                    <label id="orario-label" for="orario-consegna">Orario di Ritiro *</label>
-                    <select id="orario-consegna" name="orario" required></select>
-                </div>
+                    <div class="form-group"><label>Nome e Cognome *</label><input type="text" id="cust-name" required></div>
+                    <div class="form-group"><label>Telefono *</label><input type="tel" id="cust-phone" required></div>
+                    
+                    <div class="form-group">
+                        <label id="orario-label" for="orario-consegna">Orario di Ritiro *</label>
+                        <select id="orario-consegna" name="orario" required></select>
+                    </div>
 
-                <div id="delivery-fields" style="display: none;">
-                    <div style="display: flex; gap: 10px;">
-                        <div class="form-group" style="flex: 2;">
-                            <label>Via e Civico *</label>
-                            <input type="text" id="cust-address" placeholder="Es. Via Roma 10" autocomplete="off">
-                        </div>
-                        <div class="form-group" style="flex: 1;">
-                            <label>Comune *</label>
-                            <select id="cust-city" style="padding: 13px;">
-                                <option value="Bagheria">Bagheria</option>
-                                <option value="Aspra">Aspra</option>
-                                <option value="Santa Flavia">Santa Flavia</option>
-                                <option value="Porticello">Porticello</option>
-                                <option value="Sant'Elia">Sant'Elia</option>
-                                <option value="Ficarazzi">Ficarazzi</option>
-                            </select>
+                    <div id="delivery-fields" style="display: none;">
+                        <div style="display: flex; gap: 10px;">
+                            <div class="form-group" style="flex: 2;">
+                                <label>Via e Civico *</label>
+                                <input type="text" id="cust-address" placeholder="Es. Via Roma 10" autocomplete="off">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label>Comune *</label>
+                                <select id="cust-city" style="padding: 13px;">
+                                    <option value="Bagheria">Bagheria</option>
+                                    <option value="Aspra">Aspra</option>
+                                    <option value="Santa Flavia">Santa Flavia</option>
+                                    <option value="Porticello">Porticello</option>
+                                    <option value="Sant'Elia">Sant'Elia</option>
+                                    <option value="Ficarazzi">Ficarazzi</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="form-group"><label>Note Aggiuntive per la cucina</label><textarea id="cust-notes" rows="2" placeholder="Es. Allergie, intolleranze..."></textarea></div>
+
+                    <div id="order-summary-breakdown" class="summary-breakdown"></div>
+
+                    <div class="form-group" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 20px;">
+                        <label>Metodo di Pagamento *</label>
+                        <select id="metodo-pagamento" name="metodo-pagamento" onchange="cambiaBottonePagamento()">
+                            <option value="contanti">💵 Contanti (alla consegna/ritiro)</option>
+                            <option value="carta">💳 Carta di Credito (SumUp)</option>
+                        </select>
+                    </div>
+                </div> <div id="sumup-card-container" style="display: none;">
+                    <h4 style="margin-bottom: 15px; font-family: 'Montserrat', sans-serif; color: var(--text-dark);">Inserisci i dati della Carta</h4>
+                    <div id="sumup-card"></div>
                 </div>
 
-                <div class="form-group"><label>Note Aggiuntive per la cucina</label><textarea id="cust-notes" rows="2" placeholder="Es. Allergie, intolleranze..."></textarea></div>
-
-                <div id="order-summary-breakdown" class="summary-breakdown"></div>
-
-                <div class="form-group" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 20px;">
-                    <label>Metodo di Pagamento *</label>
-                    <select id="metodo-pagamento" name="metodo-pagamento" onchange="cambiaBottonePagamento()">
-                        <option value="contanti">💵 Contanti (alla consegna/ritiro)</option>
-                        <option value="carta">💳 Carta di Credito (SumUp)</option>
-                    </select>
-                </div>
             </div>
             
-            <div class="modal-footer">
+            <div class="modal-footer" id="modal-footer-cassa">
                 <button class="btn-confirm-order" onclick="sendOrderWithDetails()" id="pay-btn" style="background: #28a745; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
                     <i class="fa-solid fa-check-to-slot"></i> Conferma Ordine
                 </button>
@@ -2670,18 +2681,12 @@
                 
                 div.addEventListener('mousedown', function(e) {
                     e.preventDefault(); 
-                    inputElem.value = match;
+                    inputElem.value = match + ", "; // Aggiunta virgola per favorire l'inserimento civico
                     container.innerHTML = '';
                     inputElem.focus();
                 });
                 container.appendChild(div);
             });
-            
-            if (matches.length === 0) {
-                let div = document.createElement('div');
-                div.innerHTML = "<span style='color:var(--accent-main); font-weight:700;'>Nessuna via trovata.</span><br><span style='font-size:0.75rem; color:#888;'>Controlla di aver scritto bene.</span>";
-                container.appendChild(div);
-            }
         }
 
         function popolaOrari() {
@@ -2746,6 +2751,13 @@
 
         function closeCheckout() {
             document.getElementById('checkout-modal').classList.remove('active');
+            
+            // Ripristina l'interfaccia nel caso in cui l'utente abbia chiuso durante il caricamento del widget SumUp
+            document.getElementById('dati-cliente-form').style.display = 'block';
+            document.getElementById('modal-footer-cassa').style.display = 'block';
+            document.getElementById('sumup-card-container').style.display = 'none';
+            document.getElementById('sumup-card').innerHTML = ''; 
+            cambiaBottonePagamento();
         }
 
         function cambiaBottonePagamento() {
@@ -2791,6 +2803,7 @@
             const orderId = `NFAR-${firstLetter}${lastLetter}-${randomNum}_${orario}`;
 
             let total = 0; 
+            let cartItems = [];
             let text = `🆔 *Rif:* ${orderId}%0A%0A👤 *Cliente:* ${name}%0A📱 *Telefono:* ${phone}%0A${deliveryInfo}%0A`;
             if(notes) text += `📝 *Note:* ${notes}%0A`; 
             text += `%0A*RIEPILOGO ORDINE:*%0A`;
@@ -2800,6 +2813,8 @@
                     let item = itemMap[id];
                     const lineTotal = item.price * cart[id]; 
                     total += lineTotal;
+                    
+                    cartItems.push({ name: item.name, price: item.price, qty: cart[id] });
                     
                     let customTesto = "";
                     if(item.isCustom && item.customParts) {
@@ -2831,25 +2846,51 @@
             text = `✅ *ORDINE PAGATO ONLINE (SumUp)*%0A%0A` + text;
             localStorage.setItem('peterbun_order_message', text);
             
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Elaborazione...'; 
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Collegamento SumUp...'; 
             btn.disabled = true;
 
             try {
                 const response = await fetch("/paga", {
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ orderId: orderId, totalAmount: finalTotal })
+                    body: JSON.stringify({ items: cartItems, orderId: orderId, totalAmount: finalTotal })
                 });
                 const data = await response.json();
-                if (data.success && data.redirectUrl) { 
+                
+                if (data.checkoutId) { 
+                    // Nasconde il form e il footer originale, mostra il widget SumUp
+                    document.getElementById('dati-cliente-form').style.display = 'none';
+                    document.getElementById('modal-footer-cassa').style.display = 'none';
+                    document.getElementById('sumup-card-container').style.display = 'block';
+                    
+                    SumUpCard.mount({
+                        id: 'sumup-card',
+                        checkoutId: data.checkoutId,
+                        googlePay: { merchantId: 'INSERISCI_ID_GOOGLE_QUI', merchantName: 'N Farinati Modern Pizza' },
+                        applePay: { merchantName: 'N Farinati Modern Pizza' },
+                        onResponse: function(type, body) {
+                            if (type === 'success' && body.status === 'PAID') {
+                                window.location.href = "successo.html";
+                            } 
+                            else if (type === 'success' && body.status === 'FAILED') {
+                                alert("Transazione negata dalla banca. Verifica i dati e riprova.");
+                                window.location.href = "errore.html";
+                            } 
+                            else if (type === 'error' || type === 'fail' || type === 'declined') {
+                                alert("Errore durante il pagamento:\n" + JSON.stringify(body));
+                                window.location.href = "errore.html";
+                            }
+                        }
+                    });
+                } else if (data.redirectUrl) {
                     window.location.href = data.redirectUrl;
                 } else { 
-                    alert("🚫 ATTENZIONE: " + data.error); 
+                    alert("ERRORE DI SUMUP:\n" + JSON.stringify(data, null, 2)); 
                     cambiaBottonePagamento();
                     btn.disabled = false; 
                 }
             } catch (error) {
-                alert("Errore di connessione. Riprova tra poco."); 
+                alert("Errore di connessione al server:\n" + error.message); 
                 cambiaBottonePagamento();
                 btn.disabled = false;
             }
