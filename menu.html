@@ -62,7 +62,7 @@
         .variant-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; line-height: 1.4; font-weight: 600;}
         .variant-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; color: var(--text-dark); font-weight: 700; margin-bottom: 5px;}
 
-        /* MODALE PERSONALIZZAZIONE (STILE OPZIONI) */
+        /* MODALE PERSONALIZZAZIONE */
         .custom-section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--text-dark); margin: 25px 0 10px; font-size: 1.1rem; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-light); padding-bottom: 5px;}
         .custom-section-title:first-child { margin-top: 0; }
         .badge-req { font-size: 0.65rem; background: var(--text-dark); color: #fff; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: 700;}
@@ -98,7 +98,7 @@
         .btn-confirm-order { width: 100%; background: var(--accent-main); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: 800; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; text-transform: uppercase; font-family: 'Montserrat', sans-serif; transition: opacity 0.3s, background 0.3s;}
         .btn-confirm-order:disabled { background: #ced4da; cursor: not-allowed; color: #fff; box-shadow: none;}
 
-        /* MODALI LAYOUT CORRETTO */
+        /* MODALI LAYOUT */
         .checkout-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 15px; }
         .checkout-modal.active { display: flex; }
         
@@ -121,7 +121,7 @@
         .form-group label { display: block; font-size: 0.85rem; color: var(--text-dark); margin-bottom: 5px; font-weight: 600; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border-radius: 8px; background: #ffffff; border: 1px solid var(--border-light); color: var(--text-dark); outline: none; font-size: 1rem; appearance: none; -webkit-appearance: none; font-family: 'Poppins', sans-serif; font-weight: 500;}
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent-main); box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);}
-        
+
         /* CART SUMMARY IN MODAL */
         .cart-summary-box { margin-bottom: 20px; background: #fff; padding: 20px; border-radius: 12px; border: 1px solid var(--border-light); }
         .cart-summary-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;}
@@ -209,7 +209,7 @@
 
                     <div class="form-group"><label>Nome e Cognome *</label><input type="text" id="cust-name" required></div>
                     <div class="form-group"><label>Telefono *</label><input type="tel" id="cust-phone" required></div>
-                    
+				
                     <div class="form-group">
                         <label id="orario-label" for="orario-consegna">Orario di Ritiro *</label>
                         <select id="orario-consegna" name="orario" required></select>
@@ -254,7 +254,7 @@
             </div>
             
             <div class="modal-footer" id="modal-footer-cassa">
-                <button class="btn-confirm-order" onclick="sendOrderWithDetails()" id="pay-btn" style="background: #28a745; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+                <button class="btn-confirm-order" onclick="sendOrderWithDetails()" id="pay-btn">
                     <i class="fa-solid fa-check-to-slot"></i> Conferma Ordine
                 </button>
             </div>
@@ -2481,9 +2481,11 @@
             
             if (itemMap[itemId] && itemMap[itemId].isCustom) {
                 if (cart[itemId] <= 0) {
-                    document.getElementById(`variant-${itemId}`).style.display = 'none';
+                    let variantEl = document.getElementById(`variant-${itemId}`);
+                    if(variantEl) variantEl.style.display = 'none';
                 } else {
-                    document.getElementById(`variant-${itemId}`).style.display = 'block';
+                    let variantEl = document.getElementById(`variant-${itemId}`);
+                    if(variantEl) variantEl.style.display = 'block';
                 }
                 let qtySpan = document.getElementById(`qty-${itemId}`);
                 if(qtySpan) qtySpan.innerText = cart[itemId];
@@ -2518,7 +2520,15 @@
             }
 
             let sconto = total * 0.10;
-            let finalTotal = total - sconto;
+            
+            // AGGIUNTO: Controllo se è selezionato Delivery per applicare costo di consegna
+            let deliveryFee = 0;
+            const orderTypeInput = document.querySelector('input[name="order-type"]:checked');
+            if(orderTypeInput && orderTypeInput.value === 'delivery') {
+                deliveryFee = 2.50;
+            }
+
+            let finalTotal = total - sconto + deliveryFee;
 
             let priceHtml = "0,00 €";
             if (total > 0) {
@@ -2532,20 +2542,31 @@
             const footer = document.getElementById('cart-footer');
             if (totalItems > 0) footer.classList.add('visible'); else footer.classList.remove('visible');
 
-            updateCheckoutSummary(total, sconto, finalTotal);
+            // Chiude il modale della cassa se il carrello si svuota eliminando roba
+            if(totalItems === 0 && document.getElementById('checkout-modal').classList.contains('active')) {
+                closeCheckout();
+            }
+
+            updateCheckoutSummary(total, sconto, deliveryFee, finalTotal);
             renderCartSummary(); 
         }
 
-        function updateCheckoutSummary(subtotale, sconto, totaleFinale) {
+        function updateCheckoutSummary(subtotale, sconto, deliveryFee, totaleFinale) {
             const summaryContainer = document.getElementById('order-summary-breakdown');
             if(summaryContainer) {
                 if(subtotale > 0) {
                     summaryContainer.style.display = 'block';
-                    summaryContainer.innerHTML = `
+                    let html = `
                         <div class="summary-line"><span>Subtotale:</span> <span>${subtotale.toFixed(2).replace('.',',')} €</span></div>
                         <div class="summary-line discount-line"><span>Sconto Speciale (10%):</span> <span>- ${sconto.toFixed(2).replace('.',',')} €</span></div>
-                        <div class="summary-line total-line"><span>Totale da Pagare:</span> <span>${totaleFinale.toFixed(2).replace('.',',')} €</span></div>
                     `;
+                    // Mostro la riga consegna solo se c'è
+                    if (deliveryFee > 0) {
+                        html += `<div class="summary-line"><span>Costo Consegna:</span> <span>${deliveryFee.toFixed(2).replace('.',',')} €</span></div>`;
+                    }
+                    html += `<div class="summary-line total-line"><span>Totale da Pagare:</span> <span>${totaleFinale.toFixed(2).replace('.',',')} €</span></div>`;
+                    
+                    summaryContainer.innerHTML = html;
                 } else {
                     summaryContainer.style.display = 'none';
                 }
@@ -2569,13 +2590,17 @@
                         customTesto = `<div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px; line-height:1.3;">↳ ${item.customParts.join('<br>↳ ')}</div>`;
                     }
                     
+                    // AGGIUNTO BOTTONE RIMUOVI
                     html += `
-                        <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:0.95rem; font-weight:600; color:var(--text-dark);">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; font-size:0.95rem; font-weight:600; color:var(--text-dark); border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
                             <div style="flex:1; padding-right:10px;">
                                 <span><strong style="color:var(--accent-main); font-size:1.05rem;">${cart[id]}x</strong> ${item.name}</span>
                                 ${customTesto}
                             </div>
-                            <div style="font-weight:800; color:var(--text-dark);">${lineTotal.toFixed(2).replace('.',',')} €</div>
+                            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:5px;">
+                                <div style="font-weight:800; color:var(--text-dark);">${lineTotal.toFixed(2).replace('.',',')} €</div>
+                                <button type="button" onclick="updateQty('${id}', -${cart[id]})" style="background:none; border:none; color:var(--accent-main); cursor:pointer; font-size:0.8rem; font-weight:700;"><i class="fa-solid fa-trash-can"></i> Rimuovi</button>
+                            </div>
                         </div>
                     `;
                 }
@@ -2681,7 +2706,7 @@
                 
                 div.addEventListener('mousedown', function(e) {
                     e.preventDefault(); 
-                    inputElem.value = match + ", "; // Aggiunta virgola per favorire l'inserimento civico
+                    inputElem.value = match + ", ";
                     container.innerHTML = '';
                     inputElem.focus();
                 });
@@ -2740,6 +2765,7 @@
                 document.getElementById('delivery-fields').style.display = 'block';
                 labelOrario.innerText = "Orario di Consegna *";
             }
+            updateCartUI(); // Aggiorna i prezzi (toglie/mette la consegna)
         }
 
         function openCheckout() { 
@@ -2752,7 +2778,6 @@
         function closeCheckout() {
             document.getElementById('checkout-modal').classList.remove('active');
             
-            // Ripristina l'interfaccia nel caso in cui l'utente abbia chiuso durante il caricamento del widget SumUp
             document.getElementById('dati-cliente-form').style.display = 'block';
             document.getElementById('modal-footer-cassa').style.display = 'block';
             document.getElementById('sumup-card-container').style.display = 'none';
@@ -2785,11 +2810,14 @@
             if(!name || !phone) { alert("Compila Nome e Telefono per continuare!"); return; }
 
             let deliveryInfo = "";
+            let deliveryFee = 0;
+
             if (orderType === 'delivery') {
                 const address = document.getElementById('cust-address').value.trim();
                 const city = document.getElementById('cust-city').value;
                 if(!address) { alert("Inserisci la via e il numero civico."); return; }
                 
+                deliveryFee = 2.50;
                 deliveryInfo = `🛵 *Consegna a Domicilio*%0A📍 Indirizzo: ${address}, ${city}%0A🕒 Orario Richiesto: ${orario}`;
             } else {
                 deliveryInfo = `🛍️ *Ritiro al Locale*%0A🕒 Orario Richiesto: ${orario}`;
@@ -2826,12 +2854,15 @@
             }
 
             let sconto = total * 0.10;
-            let finalTotal = total - sconto;
+            let finalTotal = total - sconto + deliveryFee;
 
             if (finalTotal < 1.00) { alert("L'ordine minimo è 1.00 €!"); return; }
 
             text += `%0A📉 *Subtotale:* ${total.toFixed(2)} €`;
             text += `%0A🎉 *Sconto Speciale 10%:* -${sconto.toFixed(2)} €`;
+            if (deliveryFee > 0) {
+                text += `%0A🛵 *Costo Consegna:* +${deliveryFee.toFixed(2)} €`;
+            }
             text += `%0A💰 *TOTALE DA PAGARE: ${finalTotal.toFixed(2)} €*%0A`;
 
             const btn = document.getElementById('pay-btn');
@@ -2858,7 +2889,6 @@
                 const data = await response.json();
                 
                 if (data.checkoutId) { 
-                    // Nasconde il form e il footer originale, mostra il widget SumUp
                     document.getElementById('dati-cliente-form').style.display = 'none';
                     document.getElementById('modal-footer-cassa').style.display = 'none';
                     document.getElementById('sumup-card-container').style.display = 'block';
@@ -2866,8 +2896,8 @@
                     SumUpCard.mount({
                         id: 'sumup-card',
                         checkoutId: data.checkoutId,
-                        googlePay: { merchantId: 'INSERISCI_ID_GOOGLE_QUI', merchantName: 'N Farinati Modern Pizza' },
-                        applePay: { merchantName: 'N Farinati Modern Pizza' },
+                        googlePay: { merchantId: 'INSERISCI_ID_GOOGLE_QUI', merchantName: "N'Farinati Modern Pizza" },
+                        applePay: { merchantName: "N'Farinati Modern Pizza" },
                         onResponse: function(type, body) {
                             if (type === 'success' && body.status === 'PAID') {
                                 window.location.href = "successo.html";
