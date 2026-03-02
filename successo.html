@@ -10,7 +10,6 @@
     
     <style>
         :root {
-            /* Variabili colore N'Farinati */
             --bg-main: #f4f6f8; 
             --bg-card: #ffffff; 
             --text-dark: #2a3324; 
@@ -31,8 +30,19 @@
             justify-content: center; 
             min-height: 100vh; 
             padding: 20px; 
-            text-align: center; 
+            text-align: center;
+            position: relative;
         }
+        
+        /* FILIGRANA IN OVERLAY NON BLOCCANTE */
+        body::after {
+            content: ''; position: fixed; inset: 0; z-index: 90;
+            background-image: url('images/filigrana.jpeg');
+            background-repeat: repeat; background-size: 250px;
+            opacity: 0.04; pointer-events: none;
+        }
+        
+        body > * { position: relative; z-index: 100; }
 
         .logo-img { 
             width: 160px; 
@@ -84,7 +94,7 @@
         p { 
             font-size: 0.95rem; 
             color: var(--text-muted); 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             line-height: 1.6; 
             font-weight: 500;
         }
@@ -130,13 +140,19 @@
 </head>
 <body>
 
+
     <div class="card">
         <div class="icon-circle">
             <i class="fa-solid fa-check"></i>
         </div>
         <h1 id="titolo-successo">Pagamento Riuscito!</h1>
         <p>Il tuo ordine è stato ricevuto in cassa.<br><br>
-        <span class="highlight">Fai l'ultimo passo:</span><br> invia il resoconto su WhatsApp per far avviare la preparazione!</p>
+        <span class="highlight">Fai l'ultimo passo:</span><br> invia il resoconto per far avviare la preparazione!</p>
+        
+        <div style="background: rgba(211, 47, 47, 0.05); border-left: 3px solid var(--accent-main); padding: 12px; border-radius: 4px; margin-bottom: 25px; text-align: left;">
+            <span style="display: block; font-size: 0.8rem; color: var(--accent-main); font-weight: 800; font-family: 'Montserrat', sans-serif; margin-bottom: 3px;">⚠️ ATTENZIONE</span>
+            <span style="font-size: 0.75rem; color: var(--text-dark); line-height: 1.4; display: block; font-weight: 500;">Il numero WhatsApp è un sistema automatico esclusivo per la ricezione degli ordini. <b>Nessun operatore risponderà a messaggi o chiamate.</b></span>
+        </div>
         
         <button class="btn-whatsapp" onclick="sendFinalWhatsApp()">
             <i class="fa-brands fa-whatsapp fa-xl"></i> AVVISA LA CUCINA
@@ -145,10 +161,8 @@
 
     <script>
         window.onload = function() {
-            // Nota: Manteniamo 'peterbun_order_message' per non rompere il salvataggio dal file menu.html
             let orderMessage = localStorage.getItem('peterbun_order_message');
             
-            // Se l'ordine è in contanti, cambia colori e testo in stile N'Farinati (Rosso)
             if (orderMessage && orderMessage.includes("CONTANTI")) {
                 document.getElementById('titolo-successo').innerText = "Ordine Ricevuto!";
                 document.getElementById('titolo-successo').style.color = "var(--accent-main)";
@@ -165,13 +179,9 @@
                 alert("Nessun ordine trovato in memoria. Torna al menu e riprova, o contatta il locale!");
                 return;
             }
-            // Numero N'Farinati corretto
             const phoneNumber = "+390918432674"; 
-            
-            window.location.href = `https://wa.me/${phoneNumber}?text=${finalMessage}`;
-            
-            // Commentato di default per permettere rinvii se il cliente chiude whatsapp per sbaglio
-            // localStorage.removeItem('peterbun_order_message'); 
+            const safeMessage = encodeURIComponent(finalMessage);
+            window.location.href = `https://wa.me/${phoneNumber}?text=${safeMessage}`;
         }
     </script>
 </body>

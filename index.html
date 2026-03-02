@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>N'Farinati Modern Pizza | Pizzeria a Bagheria (PA) - Asporto & Domicilio</title>
-  <meta name="description" content="N'Farinati Modern Pizza a Bagheria (PA): pizze moderne, classiche e gourmet, panini e fritti. Ordina per asporto o consegna. Scopri il menù e contattaci su WhatsApp." />
+  <meta name="description" content="N'Farinati Modern Pizza a Bagheria (PA): pizze moderne, classiche e gourmet, panini e fritti. Ordina per asporto o consegna. Scopri il menù." />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://share.google/elao13WP5tEQmjuRK" />
@@ -160,7 +160,7 @@
     /* Foto — min-height esplicito perché le img sono absolute */
     .chef-mosaic{
       position:relative;border-radius:22px;overflow:hidden;
-      width:100%;height:620px;
+      width:100%;height:500px;
       box-shadow:0 30px 70px rgba(0,0,0,.5);
     }
     .chef-mosaic-img{
@@ -212,10 +212,6 @@
     .small-links{display:flex;gap:12px;flex-wrap:wrap}
     .small-links a{border:1px solid var(--border);padding:9px 15px;border-radius:999px;background:#fff;color:var(--text);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.83rem;transition:.2s}
     .small-links a:hover{border-color:var(--red);color:var(--red)}
-    .wa-fab{position:fixed;right:20px;bottom:20px;z-index:2000;width:60px;height:60px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;box-shadow:0 10px 25px rgba(37,211,102,.4);border:2px solid #fff;transition:.2s}
-    .wa-fab:hover{transform:translateY(-3px) scale(1.05)}
-    .wa-fab i{font-size:1.8rem}
-    .wa-tooltip{position:fixed;right:95px;bottom:30px;z-index:2000;background:#fff;box-shadow:0 5px 15px rgba(0,0,0,.1);border:1px solid var(--border);color:var(--text);font-weight:600;padding:10px 15px;border-radius:12px;font-size:.9rem}
 
     /* ══════════════════════════════════════════
        RESPONSIVE — unico blocco pulito
@@ -233,7 +229,7 @@
       /* chi siamo: testo SOPRA, foto SOTTO */
       .chef-inner{grid-template-columns:1fr;gap:32px}
       .chef-content{order:-1}
-      .chef-mosaic{order:1;height:560px}
+      .chef-mosaic{order:1;height:320px}
       .chef-headline{font-size:2.8rem}
     }
 
@@ -262,7 +258,7 @@
       .lead{font-size:.92rem}
       .chef-headline{font-size:2.2rem}
       /* chef foto: altezza fissa ridotta */
-      .chef-mosaic{height:480px}
+      .chef-mosaic{height:280px}
       /* pizze: rimane 2×2, altezze più basse */
       .pizze-bento{
         grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -280,7 +276,6 @@
 </head>
 <body>
 
-  <!-- TOPBAR -->
   <div class="topbar" role="navigation">
     <div class="container">
       <div class="topbar-inner">
@@ -300,7 +295,6 @@
 
   <main id="top">
 
-    <!-- HERO -->
     <header class="hero">
       <div class="container">
         <div class="hero-grid">
@@ -332,7 +326,6 @@
       </div>
     </header>
 
-    <!-- FILOSOFIA -->
     <section class="dark-band" aria-label="La nostra filosofia">
       <div class="container">
         <h2 class="section-title-dark">La nostra filosofia</h2>
@@ -350,14 +343,12 @@
             <p>Tramite il nostro menù digitale puoi comporre la tua pizza, scegliere gli extra e inviare l'ordine direttamente in cucina. Paga online o alla consegna!</p>
             <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
               <a class="dark-btn primary" href="menu.html"><i class="fa-solid fa-rocket"></i> Inizia Ordine</a>
-              <a class="dark-btn" href="https://wa.me/390918432674?text=Ciao%20N%27Farinati!%20Vorrei%20informazioni." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PIZZE -->
     <section id="le-nostre-pizze" class="pizze-band" aria-label="Le nostre pizze">
       <div class="container">
         <div class="pizze-eyebrow">La vetrina</div>
@@ -404,7 +395,7 @@
             </div>
             <div class="pizza-card-body">
               <div class="pizza-card-name">Marinara Elegante D.O.P.</div>
-              <div class="pizza-card-desc">San Marzano D.O.P., stracciatella di bufala campana D.O.P., acciughe de "La Perla" di Aspra e perlage di basilico.</div>
+              <div class="pizza-card-desc">San Marzano D.O.P., stracciatella di bufala campana D.O.P., acciughe di Aspra e perlage di basilico.</div>
               <div class="pizza-card-tags">
                 <span class="pizza-tag">🍅 San Marzano</span>
                 <span class="pizza-tag">Stracciatella</span>
@@ -437,11 +428,9 @@
       </div>
     </section>
 
-    <!-- CHI SIAMO -->
     <section id="chi-siamo" class="chef-band" aria-label="Chi siamo">
       <div class="container">
         <div class="chef-inner">
-          <!-- Foto -->
           <div class="chef-mosaic">
             <img class="chef-mosaic-img active"  src="images/f1.jpeg" alt="Francesco Lo Galbo - Maestro pizzaiolo" />
             <img class="chef-mosaic-img inactive" src="images/f2.jpeg" alt="Francesco Lo Galbo con la sua pizza" />
@@ -452,7 +441,6 @@
               <div class="chef-dot"    data-idx="1"></div>
             </div>
           </div>
-          <!-- Bio -->
           <div class="chef-content">
             <div class="chef-eyebrow">Il fondatore</div>
             <div class="chef-headline">Franky<br><em>Lo Galbo</em></div>
@@ -480,7 +468,6 @@
       </div>
     </section>
 
-    <!-- DOVE SIAMO -->
     <section id="dove-siamo" class="light-section">
       <div class="container">
         <h2 class="section-title">Dove siamo</h2>
@@ -521,17 +508,8 @@
     </footer>
   </main>
 
-  <div class="wa-tooltip" aria-hidden="true">Scrivici su WhatsApp</div>
-  <a class="wa-fab" href="https://wa.me/390918432674?text=Ciao%20N%27Farinati!%20Vorrei%20informazioni." target="_blank" rel="noopener" aria-label="Contatta su WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    (function(){
-      const tip = document.querySelector('.wa-tooltip');
-      if(tip && window.matchMedia('(max-width:520px)').matches) setTimeout(()=>tip.style.display='none',3500);
-    })();
     (function(){
       const imgs = document.querySelectorAll('.chef-mosaic-img');
       const dots = document.querySelectorAll('.chef-dot');
