@@ -21,7 +21,17 @@
             --success: #28a745;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg-main); color: var(--text-dark); padding-bottom: 120px; min-height: 100vh; }
+        
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-main); color: var(--text-dark); padding-bottom: 120px; min-height: 100vh; position: relative;}
+        
+        /* FILIGRANA IN BACKGROUND */
+        body::after {
+            content: ''; position: fixed; inset: 0; z-index: 90; 
+            background-image: url('images/filigrana.jpeg');
+            background-repeat: repeat; background-size: 250px;
+            opacity: 0.04; pointer-events: none; 
+        }
+        body > * { position: relative; z-index: 100; }
 
         header { background: var(--bg-card); text-align: center; padding: 30px 20px 40px; border-bottom: 1px solid var(--border-light); box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
         .logo-img { width: 170px; max-width: 100%; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
@@ -33,7 +43,7 @@
         .info-line i { color: var(--accent-main); width: 16px; text-align: center;}
 
         /* FILTRI */
-        .filters-container { display: flex; overflow-x: auto; gap: 10px; padding: 15px 20px; position: sticky; top: 0; background: rgba(244, 246, 248, 0.98); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border-light); }
+        .filters-container { display: flex; overflow-x: auto; gap: 10px; padding: 15px 20px; position: sticky; top: 0; background: rgba(244, 246, 248, 0.98); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border-light); }
         .filters-container::-webkit-scrollbar { display: none; }
         .filter-btn { background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-light); padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; white-space: nowrap; cursor: pointer; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif;}
         .filter-btn.active { background: var(--accent-main); color: #ffffff; border-color: var(--accent-main); box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3); }
@@ -79,7 +89,7 @@
         .custom-price { margin-left: auto; color: var(--accent-main); font-weight: 700; font-size: 0.95rem; }
 
         /* CARRELLO FOOTER */
-        .cart-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 15px 20px calc(20px + env(safe-area-inset-bottom)); display: flex; justify-content: space-between; align-items: center; border-top: 3px solid var(--accent-main); transform: translateY(120%); transition: transform 0.3s ease; z-index: 1000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 25px rgba(0,0,0,0.15);}
+        .cart-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 15px 20px calc(20px + env(safe-area-inset-bottom)); display: flex; justify-content: space-between; align-items: center; border-top: 3px solid var(--accent-main); transform: translateY(120%); transition: transform 0.3s ease; z-index: 3000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 25px rgba(0,0,0,0.15);}
         .cart-footer.visible { transform: translateY(0); }
         .cart-total { font-size: 1.4rem; font-weight: 800; color: var(--accent-main); font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;}
         .cart-total span { font-size: 0.75rem; color: var(--text-dark); text-transform: uppercase; margin-bottom: 2px; }
@@ -99,7 +109,7 @@
         .btn-confirm-order:disabled { background: #ced4da; cursor: not-allowed; color: #fff; box-shadow: none;}
 
         /* MODALI LAYOUT */
-        .checkout-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 15px; }
+        .checkout-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 4000; display: none; align-items: center; justify-content: center; padding: 15px; }
         .checkout-modal.active { display: flex; }
         
         .checkout-content { background: var(--bg-main); border-radius: 16px; width: 100%; max-width: 500px; max-height: 85vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;}
@@ -246,7 +256,9 @@
                             <option value="carta">💳 Carta di Credito (SumUp)</option>
                         </select>
                     </div>
-                </div> <div id="sumup-card-container" style="display: none;">
+                </div>
+
+                <div id="sumup-card-container" style="display: none;">
                     <h4 style="margin-bottom: 15px; font-family: 'Montserrat', sans-serif; color: var(--text-dark);">Inserisci i dati della Carta</h4>
                     <div id="sumup-card"></div>
                 </div>
@@ -1493,6 +1505,19 @@
           },
           {
             "categoria": "American Hamburger",
+            "prodotto": "Nuovo smash burger",
+            "ingredienti": "Doppio smashed burger, cheddar filante, bacon croccante, salsa burger, avvolto in un potato bun originale Martins",
+            "prezzi": [ { "prezzo": 6.50 } ],
+            "scelte_obbligatorie": {
+              "Patatine": [
+                { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 },
+                { "valore": "Curly fries", "supplemento": 2.5 },
+                { "valore": "Patate surecrisp Fry'n Dip Con Buccia", "supplemento": 1.5 }
+              ]
+            }
+          },
+          {
+            "categoria": "American Hamburger",
             "prodotto": "Drive in Burger",
             "ingredienti": "burger di vitello, cheddar, salamino piccante, bacon, lattuga, cipolla rossa, pomodoro, Peppery White BBQ",
             "prezzi": [ { "prezzo": 9.5 } ],
@@ -1630,7 +1655,7 @@
           {
             "categoria": "Panini Americani",
             "prodotto": "Grilled Chicken",
-            "ingredienti": "pollo grigliato, peperoni, funghi, cipolle, emmental, misticanza",
+            "ingredienti": "pollo grigliato, peperoni, funghi, cipolle, emmental, rucola",
             "prezzi": [ { "prezzo": 9.5 } ],
             "scelte_obbligatorie": {
               "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
@@ -1820,7 +1845,7 @@
           {
             "categoria": "Panini Piastrati",
             "prodotto": "Panino Tonno e Cipolla",
-            "ingredienti": "tonno in olio d’oliva, patè di olive, cipolle rosse crude, rucola, olio, sale, pepe, limone",
+            "ingredienti": "tonno in olio d'oliva, cipolla rossa cruda, rucola, sale, olio, pepe e una leggera spremuta di limone",
             "prezzi": [ { "prezzo": 7.0 } ],
             "scelte_obbligatorie": {
               "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
@@ -1955,7 +1980,7 @@
           {
             "categoria": "Wrap",
             "prodotto": "Tom's River Wraps",
-            "ingredienti": "pollo fritto croccante, chips di zucchine, chipotle mayo, guacamole, lattuga, patate a spicchi aromatizzate",
+            "ingredienti": "pollo fritto croccante, chips di zucchine, chipotle mayo, avocado, lattuga, patate a spicchi aromatizzate",
             "prezzi": [ { "prezzo": 10.5 } ],
             "scelte_obbligatorie": {}
           },
@@ -2145,7 +2170,8 @@
                 let parsedIngredients = [];
                 if(rj.ingredienti) {
                     let cleaned = rj.ingredienti.replace(/in uscita[:]?/gi, '').replace(/all['’]uscita[:]?/gi, '');
-                    parsedIngredients = cleaned.split(/[,;]+/).map(s => s.trim()).filter(s => s.length > 2);
+                    // Splitta l'ingrediente se c'è una virgola, un punto e virgola, o la lettera "e" isolata tra spazi
+                    parsedIngredients = cleaned.split(/[,;]|\s+e\s+/gi).map(s => s.trim()).filter(s => s.length > 2);
                 }
 
                 let itm = {
@@ -2169,13 +2195,6 @@
             buildMenuData();
             renderFilters(); 
             renderMenu(); 
-            
-            document.addEventListener('click', function(e) {
-                if(e.target.id !== 'cust-address') {
-                    let container = document.getElementById('address-suggestions');
-                    if(container) container.innerHTML = '';
-                }
-            });
         }
 
         function renderFilters() {
@@ -2521,7 +2540,6 @@
 
             let sconto = total * 0.10;
             
-            // AGGIUNTO: Controllo se è selezionato Delivery per applicare costo di consegna
             let deliveryFee = 0;
             const orderTypeInput = document.querySelector('input[name="order-type"]:checked');
             if(orderTypeInput && orderTypeInput.value === 'delivery') {
@@ -2542,7 +2560,6 @@
             const footer = document.getElementById('cart-footer');
             if (totalItems > 0) footer.classList.add('visible'); else footer.classList.remove('visible');
 
-            // Chiude il modale della cassa se il carrello si svuota eliminando roba
             if(totalItems === 0 && document.getElementById('checkout-modal').classList.contains('active')) {
                 closeCheckout();
             }
@@ -2560,7 +2577,6 @@
                         <div class="summary-line"><span>Subtotale:</span> <span>${subtotale.toFixed(2).replace('.',',')} €</span></div>
                         <div class="summary-line discount-line"><span>Sconto Speciale (10%):</span> <span>- ${sconto.toFixed(2).replace('.',',')} €</span></div>
                     `;
-                    // Mostro la riga consegna solo se c'è
                     if (deliveryFee > 0) {
                         html += `<div class="summary-line"><span>Costo Consegna:</span> <span>${deliveryFee.toFixed(2).replace('.',',')} €</span></div>`;
                     }
@@ -2590,7 +2606,6 @@
                         customTesto = `<div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px; line-height:1.3;">↳ ${item.customParts.join('<br>↳ ')}</div>`;
                     }
                     
-                    // AGGIUNTO BOTTONE RIMUOVI
                     html += `
                         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; font-size:0.95rem; font-weight:600; color:var(--text-dark); border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
                             <div style="flex:1; padding-right:10px;">
@@ -2689,49 +2704,51 @@
             upsellContainer.innerHTML = html;
         }
 
-        function handleAddressInput(inputElem) {
-            let val = inputElem.value;
-            let container = document.getElementById('address-suggestions');
-            container.innerHTML = '';
-            
-            if (!val) return;
-            
-            let escapedVal = val.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-            let matches = databaseVie.filter(s => s.toLowerCase().includes(val.toLowerCase()));
-            
-            matches.slice(0, 8).forEach(match => {
-                let div = document.createElement('div');
-                let regex = new RegExp(`(${escapedVal})`, "gi");
-                div.innerHTML = match.replace(regex, "<strong style='color:var(--accent-main);'>$1</strong>");
-                
-                div.addEventListener('mousedown', function(e) {
-                    e.preventDefault(); 
-                    inputElem.value = match + ", ";
-                    container.innerHTML = '';
-                    inputElem.focus();
-                });
-                container.appendChild(div);
-            });
-        }
-
+        // ORARI E GIORNI DI LAVORO (Con Lunedì Chiuso e Sabato anticipato)
         function popolaOrari() {
             const select = document.getElementById('orario-consegna');
             const payBtn = document.getElementById('pay-btn');
             select.innerHTML = '';
             
             const now = new Date();
+            const currentDay = now.getDay(); // 0=Dom, 1=Lun, 2=Mar, ... 6=Sab
             const currentHour = now.getHours();
             const currentMinute = now.getMinutes();
             const minTimeInMinutes = (currentHour * 60) + currentMinute + 20;
 
+            // Se è lunedì, ristorante chiuso
+            if (currentDay === 1) {
+                select.innerHTML = `<option value="">Oggi siamo chiusi (Lunedì)</option>`;
+                payBtn.disabled = true;
+                payBtn.style.boxShadow = 'none';
+                return;
+            }
+
+            // Impostazioni orari standard (Mar-Dom 18:30 - 22:30)
+            let startHour = 18;
+            let startMin = 30;
+            let endHour = 22;
+            let endMin = 30;
+
+            // Eccezione Sabato (18:00 - 23:00)
+            if (currentDay === 6) {
+                startHour = 18;
+                startMin = 0;
+                endHour = 23;
+                endMin = 0;
+            }
+
             let slotAggiunti = 0;
-            for(let h = 18; h <= 23; h++) {
+            for(let h = startHour; h <= endHour; h++) {
                 for(let m = 0; m < 60; m += 15) {
-                    if (h === 18 && m < 30) continue; 
-                    if (h === 23 && m > 30) continue; 
+                    if (h === startHour && m < startMin) continue; 
+                    if (h === endHour && m > endMin) continue; 
                     
                     const slotTimeInMinutes = (h * 60) + m;
-                    if (slotTimeInMinutes >= minTimeInMinutes || currentHour < 18) {
+                    
+                    // Mostra l'orario se è nel futuro (almeno 20 min in più)
+                    // Se il locale non è ancora aperto (es. sono le 15:00), mostra tutti gli orari
+                    if (slotTimeInMinutes >= minTimeInMinutes || currentHour < startHour) {
                         let hh = h.toString().padStart(2, '0');
                         let mm = m.toString().padStart(2, '0');
                         select.innerHTML += `<option value="${hh}:${mm}">${hh}:${mm}</option>`;
@@ -2765,7 +2782,7 @@
                 document.getElementById('delivery-fields').style.display = 'block';
                 labelOrario.innerText = "Orario di Consegna *";
             }
-            updateCartUI(); // Aggiorna i prezzi (toglie/mette la consegna)
+            updateCartUI(); 
         }
 
         function openCheckout() { 
@@ -2818,9 +2835,9 @@
                 if(!address) { alert("Inserisci la via e il numero civico."); return; }
                 
                 deliveryFee = 2.50;
-                deliveryInfo = `🛵 *Consegna a Domicilio*%0A📍 Indirizzo: ${address}, ${city}%0A🕒 Orario Richiesto: ${orario}`;
+                deliveryInfo = `🛵 *Consegna a Domicilio*\n📍 Indirizzo: ${address}, ${city}\n🕒 Orario Richiesto: ${orario}`;
             } else {
-                deliveryInfo = `🛍️ *Ritiro al Locale*%0A🕒 Orario Richiesto: ${orario}`;
+                deliveryInfo = `🛍️ *Ritiro al Locale*\n🕒 Orario Richiesto: ${orario}`;
             }
 
             const cleanName = name.replace(/\s+/g, '').toUpperCase(); 
@@ -2832,9 +2849,9 @@
 
             let total = 0; 
             let cartItems = [];
-            let text = `🆔 *Rif:* ${orderId}%0A%0A👤 *Cliente:* ${name}%0A📱 *Telefono:* ${phone}%0A${deliveryInfo}%0A`;
-            if(notes) text += `📝 *Note:* ${notes}%0A`; 
-            text += `%0A*RIEPILOGO ORDINE:*%0A`;
+            let text = `🆔 *Rif:* ${orderId}\n\n👤 *Cliente:* ${name}\n📱 *Telefono:* ${phone}\n${deliveryInfo}\n`;
+            if(notes) text += `📝 *Note:* ${notes}\n`; 
+            text += `\n*RIEPILOGO ORDINE:*\n`;
 
             for(let id in cart) {
                 if (cart[id] > 0 && itemMap[id]) {
@@ -2846,10 +2863,10 @@
                     
                     let customTesto = "";
                     if(item.isCustom && item.customParts) {
-                        customTesto += `%0A   ↳ ${item.customParts.join('%0A   ↳ ')}`;
+                        customTesto += `\n   ↳ ${item.customParts.join('\n   ↳ ')}`;
                     }
                     
-                    text += `▫️ ${cart[id]}x ${item.name} (${lineTotal.toFixed(2)}€)${customTesto}%0A`;
+                    text += `▪️ ${cart[id]}x ${item.name} (${lineTotal.toFixed(2)}€)${customTesto}\n`;
                 }
             }
 
@@ -2858,23 +2875,23 @@
 
             if (finalTotal < 1.00) { alert("L'ordine minimo è 1.00 €!"); return; }
 
-            text += `%0A📉 *Subtotale:* ${total.toFixed(2)} €`;
-            text += `%0A🎉 *Sconto Speciale 10%:* -${sconto.toFixed(2)} €`;
+            text += `\n📉 *Subtotale:* ${total.toFixed(2)} €`;
+            text += `\n🎉 *Sconto Speciale 10%:* -${sconto.toFixed(2)} €`;
             if (deliveryFee > 0) {
-                text += `%0A🛵 *Costo Consegna:* +${deliveryFee.toFixed(2)} €`;
+                text += `\n🛵 *Costo Consegna:* +${deliveryFee.toFixed(2)} €`;
             }
-            text += `%0A💰 *TOTALE DA PAGARE: ${finalTotal.toFixed(2)} €*%0A`;
+            text += `\n💰 *TOTALE DA PAGARE: ${finalTotal.toFixed(2)} €*\n`;
 
             const btn = document.getElementById('pay-btn');
 
             if (metodoPagamento === "contanti") {
-                text = `⚠️ *ORDINE DA PAGARE IN CONTANTI* ⚠️%0A%0A` + text;
+                text = `⚠️ *ORDINE DA PAGARE IN CONTANTI* ⚠️\n\n` + text;
                 localStorage.setItem('peterbun_order_message', text);
                 window.location.href = "successo.html";
                 return;
             }
 
-            text = `✅ *ORDINE PAGATO ONLINE (SumUp)*%0A%0A` + text;
+            text = `✅ *ORDINE PAGATO ONLINE (SumUp)*\n\n` + text;
             localStorage.setItem('peterbun_order_message', text);
             
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Collegamento SumUp...'; 
