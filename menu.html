@@ -291,7 +291,24 @@
     </div>
 
     <script>
+        // Array standardizzato per tutte le opzioni Patatine in Burgers, Wraps, Piastrati
+        const patatineOptions = [
+            { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 },
+            { "valore": "Curly fries", "supplemento": 2.5 },
+            { "valore": "Patate surecrisp Fry'n Dip Con Buccia", "supplemento": 1.5 },
+            { "valore": "Patate a spicchi piccanti (spicchi spicy)", "supplemento": 2.0 },
+            { "valore": "Chips di patate fresche", "supplemento": 0.0 },
+            { "valore": "Patatine fritte surgelate", "supplemento": 1.0 }
+        ];
+
         const rawMenuData = [
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Nuovo smash burger",
+            "ingredienti": "Doppio smashed burger, cheddar filante, bacon croccante, salsa burger, avvolto in un potato bun originale Martins",
+            "prezzi": [ { "prezzo": 6.50 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
           {
             "categoria": "Pizze",
             "prodotto": "Caprese Agro-Sarnese",
@@ -306,7 +323,7 @@
           {
             "categoria": "Pizze",
             "prodotto": "Marinara elegante D.O.P.",
-            "ingredienti": "pomodoro San Marzano D.O.P., origano siciliano, stracciatella di bufala D.O.P., acciughe di aspra (La Perla), perlage di basilico, olio biologico locale",
+            "ingredienti": "pomodoro San Marzano D.O.P., origano siciliano, stracciatella di bufala D.O.P., acciughe di aspra, perlage di basilico, olio biologico locale",
             "prezzi": [
               { "prezzo": 11.0, "variante": "Personale" },
               { "prezzo": 13.5, "variante": "Gluten free" },
@@ -425,7 +442,7 @@
           {
             "categoria": "Pizze",
             "prodotto": "4 Gusti",
-            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, funghi, origano e olio extravergine d'oliva",
+            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, funghi, olio extravergine d'oliva",
             "prezzi": [
               { "prezzo": 8.0, "variante": "Personale" },
               { "prezzo": 16.0, "variante": "Familiare" },
@@ -437,7 +454,7 @@
           {
             "categoria": "Pizze",
             "prodotto": "Capricciosa",
-            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, carciofi, funghi, olive, origano e olio extravergine d'oliva",
+            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, carciofi, funghi, olive, olio extravergine d'oliva",
             "prezzi": [
               { "prezzo": 8.5, "variante": "Personale" },
               { "prezzo": 17.0, "variante": "Familiare" },
@@ -555,7 +572,7 @@
           {
             "categoria": "Pizze",
             "prodotto": "Sfincione Modern Pizza",
-            "ingredienti": "crema di cipolle caramellate, mozzarella, acciughe, ricotta, tocchetti di tuma panata e fritta, pecorino grattugiato e origano",
+            "ingredienti": "crema di cipolle caramellate, mozzarella, acciughe, ricotta, tocchetti di tuma fritta, pecorino grattugiato, origano",
             "prezzi": [
               { "prezzo": 9.0, "variante": "Personale" },
               { "prezzo": 18.5, "variante": "Familiare" },
@@ -574,6 +591,90 @@
               { "prezzo": 10.0, "variante": "Impasto integrale ai semi misti" }
             ],
             "scelte_obbligatorie": {}
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Drive in Burger",
+            "ingredienti": "burger di vitello, cheddar, salamino piccante, bacon, lattuga, cipolla rossa, pomodoro, Peppery White BBQ",
+            "prezzi": [ { "prezzo": 9.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Pistacchino Burger",
+            "ingredienti": "Hamburger di vitello, mortadella, burrata, radicchio, pesto di pistacchio, servito con patatine al pistacchio",
+            "prezzi": [ { "prezzo": 13.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Country Burger",
+            "ingredienti": "hamburger di vitello, emmental, carote, chips di zucchine, chipotle mayo, rucola",
+            "prezzi": [ { "prezzo": 10.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Greta Burger",
+            "ingredienti": "hamburger di vitello, avocado, funghi, cipolle, cheddar, rucola, chipotle mayo",
+            "prezzi": [ { "prezzo": 10.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Fat Bastard Burger",
+            "ingredienti": "doppio burger, sottiletta, onion rings, bacon, cheddar, barbecue maionese, lattuga",
+            "prezzi": [ { "prezzo": 13.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "GB Style Burger",
+            "ingredienti": "Burger, emmental, salsa rosa, pomodorini, lattuga a filetti e cipolle",
+            "prezzi": [ { "prezzo": 9.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "The Lo Galbo's Burger",
+            "ingredienti": "burger, cheddar, salsa rosa, lattuga a filetti e pomodoro a fette",
+            "prezzi": [ { "prezzo": 8.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Jersey Boy Burger",
+            "ingredienti": "burger, peperoni, cipolla, funghi, emmental, lattuga a filetti, pomodoro",
+            "prezzi": [ { "prezzo": 9.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Sinaloa Mexico Burger",
+            "ingredienti": "burger, bruschetta, salsa buffalo, salsiccia piccante, avocado, lattuga a filetti e cheddar",
+            "prezzi": [ { "prezzo": 9.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Good Fellas Burger",
+            "ingredienti": "burger, mozzarella, radicchio, spinaci, bacon, funghi, chipotle mayo",
+            "prezzi": [ { "prezzo": 8.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "N'farinati Original Burger",
+            "ingredienti": "burger di vitello, salsa chipotle, avocado, bacon, funghi, onion rings, rucola, mozzarella filante",
+            "prezzi": [ { "prezzo": 10.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "New York Times Burger",
+            "ingredienti": "burger, bacon, onion rings, salsa barbecue, sottilette, lattuga a filetti",
+            "prezzi": [ { "prezzo": 9.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Pizze Americane",
@@ -1150,7 +1251,7 @@
           {
             "categoria": "Pizze Senza Glutine",
             "prodotto": "4 Gusti SG",
-            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, funghi, origano e olio extravergine d'oliva",
+            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, funghi, olio extravergine d'oliva",
             "prezzi": [ { "prezzo": 10.5 } ],
             "scelte_obbligatorie": {}
           },
@@ -1185,7 +1286,7 @@
           {
             "categoria": "Pizze Senza Glutine",
             "prodotto": "Capricciosa SG",
-            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, carciofi, funghi, olive, origano e olio extravergine d'oliva",
+            "ingredienti": "pomodoro, mozzarella fiordilatte, prosciutto cotto, wurstel, carciofi, funghi, olive, olio extravergine d'oliva",
             "prezzi": [ { "prezzo": 11.0 } ],
             "scelte_obbligatorie": {}
           },
@@ -1206,7 +1307,7 @@
           {
             "categoria": "Pizze Senza Glutine",
             "prodotto": "Greenfield SG",
-            "ingredienti": "misto 4 formaggi (mozzarella, provoletta, gorgonzola, pecorino), funghi, bacon; all’uscita pesto e granella di pistacchi",
+            "ingredienti": "misto 4 formaggi (mozzarella, provoletta, gorgonzola, pecorino), funghi, bacon; all’uscita pesto di pistacchio, granella di pistacchi",
             "prezzi": [ { "prezzo": 12.5 } ],
             "scelte_obbligatorie": {}
           },
@@ -1504,485 +1605,109 @@
             "scelte_obbligatorie": { "Patatine": [ { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ] }
           },
           {
-            "categoria": "American Hamburger",
-            "prodotto": "Nuovo smash burger",
-            "ingredienti": "Doppio smashed burger, cheddar filante, bacon croccante, salsa burger, avvolto in un potato bun originale Martins",
-            "prezzi": [ { "prezzo": 6.50 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [
-                { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 },
-                { "valore": "Curly fries", "supplemento": 2.5 },
-                { "valore": "Patate surecrisp Fry'n Dip Con Buccia", "supplemento": 1.5 }
-              ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Drive in Burger",
-            "ingredienti": "burger di vitello, cheddar, salamino piccante, bacon, lattuga, cipolla rossa, pomodoro, Peppery White BBQ",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Pistacchino Burger",
-            "ingredienti": "Hamburger di vitello, mortadella, burrata, radicchio, pesto di pistacchio, servito con patatine al pistacchio",
-            "prezzi": [ { "prezzo": 13.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Country Burger",
-            "ingredienti": "hamburger di vitello, emmental, carote, chips di zucchine, chipotle mayo, rucola",
-            "prezzi": [ { "prezzo": 10.5 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Greta Burger",
-            "ingredienti": "hamburger di vitello, avocado, funghi, cipolle, cheddar, rucola, chipotle mayo",
-            "prezzi": [ { "prezzo": 10.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Fat Bastard Burger",
-            "ingredienti": "doppio burger, sottiletta, onion rings, bacon, cheddar, barbecue maionese, lattuga",
-            "prezzi": [ { "prezzo": 13.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "GB Style Burger",
-            "ingredienti": "Burger, emmental, salsa rosa, pomodorini, lattuga a filetti e cipolle",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "The Lo Galbo's Burger",
-            "ingredienti": "burger, cheddar, salsa rosa, lattuga a filetti e pomodoro a fette",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Jersey Boy Burger",
-            "ingredienti": "burger, peperoni, cipolla, funghi, emmental, lattuga a filetti, pomodoro",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Sinaloa Mexico Burger",
-            "ingredienti": "burger, bruschetta, salsa buffalo, salsiccia piccante, avocado, lattuga a filetti e cheddar",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Good Fellas Burger",
-            "ingredienti": "burger, mozzarella, radicchio, spinaci, bacon, funghi, chipotle mayo",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "N'farinati Original Burger",
-            "ingredienti": "burger di vitello, salsa chipotle, avocado, bacon, funghi, onion rings, rucola, mozzarella filante",
-            "prezzi": [ { "prezzo": 10.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "New York Times Burger",
-            "ingredienti": "burger, bacon, onion rings, salsa barbecue, sottilette, lattuga a filetti",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Cottura burger": [ { "valore": "Al Sangue", "supplemento": 0.0 }, { "valore": "Ben Cotto", "supplemento": 0.0 }, { "valore": "Medio", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Chicken BLT American Classic",
-            "ingredienti": "pollo fritto, bacon, lattuga a filetti, pomodoro, olio, sale e pepe",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "California Chicken American Classic",
-            "ingredienti": "pollo fritto, lattuga a filetti, pomodoro, cipolla rossa cruda, maionese, olio, sale e pepe",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Grilled Chicken",
-            "ingredienti": "pollo grigliato, peperoni, funghi, cipolle, emmental, rucola",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Heavy Hitter Piccante",
-            "ingredienti": "pollo fritto marinato buffalo, cipolle, funghi, emmental, salsa ranch, lattuga a filetti, pomodoro",
-            "prezzi": [ { "prezzo": 10.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Italian Hot Dog Italo Americano",
-            "ingredienti": "wurstel arrostiti, cipolle, peperoni, patatine fritte, cheddar",
-            "prezzi": [ { "prezzo": 7.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Hot Dog Maxi",
-            "ingredienti": "hot dog, mostarda, ketchup",
-            "prezzi": [ { "prezzo": 6.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Chicken Bacon Ranch Most Loved Sandwich",
-            "ingredienti": "pollo fritto, bacon croccante, salsa ranch, lattuga a filetti, pomodoro a fette",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Chicken Parm American Finest",
-            "ingredienti": "pollo fritto, salsa di pomodoro, mozzarella fiordilatte filante, pecorino romano, basilico",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Fat Bastard Per i Più Giovani",
-            "ingredienti": "pollo fritto, bacon croccante, salamino piccante, patatine fritte, mozzarella sticks, salsa barbecue, cheddar",
-            "prezzi": [ { "prezzo": 11.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Americani",
-            "prodotto": "Cardiac Arrest Per i Più Giovani",
-            "ingredienti": "chicken fingers, mozzarella sticks, onion rings, patatine fritte, salsa ranch, sottiletta, buffalo sauce",
-            "prezzi": [ { "prezzo": 11.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Bacon Ranch",
-            "ingredienti": "carne di vitello sfilacciata philly style, cheddar, cipolla, bacon, ranch dressing, lattuga, pomodoro",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Southern Style",
-            "ingredienti": "carne di vitello sfilacciata philly style, mozzarella fiordilatte, peperoni, funghi, cipolle fritte croccanti, salsa BBQ, lattuga",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Original Philly Sandwich",
-            "ingredienti": "carne di vitello sfilacciata philly style, mozzarella fiordilatte, peperoni, cipolle, funghi",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Cheesesteak on Steroids",
-            "ingredienti": "carne di vitello sfilacciata philly style, cheddar, funghi, peperoni, cipolle, patatine fritte, salsa BBQ Mayo",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "California Style",
-            "ingredienti": "carne di vitello sfilacciata philly style, mozzarella fiordilatte, lattuga, pomodoro a fette, maionese",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "'Nfari Steak Sandwich",
-            "ingredienti": "carne di vitello sfilacciata philly style, sottiletta, bacon, funghi, cipolle, rucola, pomodoro a fette",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Devil Melt",
-            "ingredienti": "carne di vitello sfilacciata philly style, emmental, buffalo piccante, salamino piccante, lattuga, pomodoro",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Philly Style Cheesesteaks",
-            "prodotto": "Cheesesteak",
-            "ingredienti": "carne di vitello sfilacciata philly style, mozzarella fiordilatte",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Piccantino",
-            "ingredienti": "salamino piccante, mozzarella, tabasco, cipolle in padella, lattuga",
-            "prezzi": [ { "prezzo": 7.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino 'Nfarinati Special",
-            "ingredienti": "mortadella, mozzarella di bufala, crema di cipolle caramellate, radicchio, granella di pistacchio",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Cartoccio",
-            "ingredienti": "prosciutto, mozzarella e salsa a scelta",
-            "prezzi": [ { "prezzo": 5.0 } ],
-            "scelte_obbligatorie": {
-              "Salsa": [ { "valore": "Ketchup", "supplemento": 0.0 }, { "valore": "Maionese", "supplemento": 0.0 }, { "valore": "Salsa rosa", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Sofisticato",
-            "ingredienti": "prosciutto crudo di Parma, chips di zucchine, mozzarella di bufala, rucola, pesto di pistacchio",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Alessio Player",
-            "ingredienti": "patatine fritte, cheddar",
-            "prezzi": [ { "prezzo": 5.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Tonno e Cipolla",
-            "ingredienti": "tonno in olio d'oliva, cipolla rossa cruda, rucola, sale, olio, pepe e una leggera spremuta di limone",
-            "prezzi": [ { "prezzo": 7.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Bresa Hola",
-            "ingredienti": "bresaola punta d’anca, mozzarella di bufala, grana, rucola, limone, olio, sale e pepe",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino San Daniele",
-            "ingredienti": "prosciutto crudo di Parma, mozzarella, scaglie di grana, rucola, olio, sale e pepe",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
-            "categoria": "Panini Piastrati",
-            "prodotto": "Panino Topolino",
-            "ingredienti": "prosciutto, wurstel, mozzarella e salsa a scelta",
-            "prezzi": [ { "prezzo": 5.5 } ],
-            "scelte_obbligatorie": {
-              "Salsa": [ { "valore": "Ketchup", "supplemento": 0.0 }, { "valore": "Maionese", "supplemento": 0.0 }, { "valore": "Salsa rosa", "supplemento": 0.0 } ],
-              "Patatine": [ { "valore": "Patate dolci (sweet potato)", "supplemento": 2.0 }, { "valore": "Curly fries", "supplemento": 2.5 }, { "valore": "Patate surecrisp", "supplemento": 1.5 }, { "valore": "Patate a spicchi piccanti", "supplemento": 2.0 }, { "valore": "Chips di patate fresche", "supplemento": 0.0 }, { "valore": "Patatine fritte surgelate", "supplemento": 1.0 } ]
-            }
-          },
-          {
             "categoria": "Wrap",
             "prodotto": "Pump It Up Wrap",
             "ingredienti": "pollo alla griglia marinato, spinaci, funghi, mozzarella, radicchio, avocado, salsa yogurt",
             "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Burger Wrap",
             "ingredienti": "hamburger di vitello, bacon, cheddar, cipolle, lattuga, pomodoro, salsa rosa",
             "prezzi": [ { "prezzo": 10.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "NY Giants Wrap",
             "ingredienti": "pollo fritto, cheddar, bacon, rucola, carote a filetti, cipolle, ranch dressing",
             "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Chicken Quesadillas Wrap",
             "ingredienti": "pollo alla griglia, cheddar, lattuga, pomodoro",
             "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Hip Hop Wrap",
             "ingredienti": "pollo fritto, mozzarella sticks, onion rings, bacon, lattuga a filetti, maionese al barbecue, cheddar",
             "prezzi": [ { "prezzo": 10.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Buffalo Style Wrap",
             "ingredienti": "pollo fritto buffalo piccante, emmental, lattuga a filetti, pomodoro a fette, blue cheese dressing",
             "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Chicken Chips Wrap",
             "ingredienti": "pollo fritto croccante, chips di patate, bacon, salsa cheddar, ranch dressing, lattuga",
             "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "West Palm Beach Wrap",
             "ingredienti": "pollo fritto, mozzarella fiordilatte, lattuga a filetti, pomodorini, avocado e maionese",
             "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Baby Wrap",
             "ingredienti": "prosciutto cotto, mozzarella, patatine fritte",
             "prezzi": [ { "prezzo": 6.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "High Class Wrap",
             "ingredienti": "prosciutto di Parma, grana a scaglie, rucola, pomodorini, mozzarella di bufala, glassa balsamica",
             "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Chicago Wrap",
             "ingredienti": "pollo fritto honey mustard homemade, bacon croccante, cheddar, lattuga a filetti",
             "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "BBQ Chicken Wrap",
             "ingredienti": "pollo fritto al barbecue, patatine fritte, mozzarella, lattuga a filetti e cipolle",
             "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Belmar Wrap",
             "ingredienti": "hamburger di vitello, cheddar, bacon, onion rings, crocchè di patate, honey mustard",
             "prezzi": [ { "prezzo": 11.0 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Chicken Caesar Wrap",
             "ingredienti": "pollo alla griglia marinato, lattuga, ceasar dressing, pecorino romano",
             "prezzi": [ { "prezzo": 7.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Wrap",
             "prodotto": "Tom's River Wraps",
             "ingredienti": "pollo fritto croccante, chips di zucchine, chipotle mayo, avocado, lattuga, patate a spicchi aromatizzate",
             "prezzi": [ { "prezzo": 10.5 } ],
-            "scelte_obbligatorie": {}
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Specialità",
@@ -2171,7 +1896,18 @@
                 if(rj.ingredienti) {
                     let cleaned = rj.ingredienti.replace(/in uscita[:]?/gi, '').replace(/all['’]uscita[:]?/gi, '');
                     // Splitta l'ingrediente se c'è una virgola, un punto e virgola, o la lettera "e" isolata tra spazi
-                    parsedIngredients = cleaned.split(/[,;]|\s+e\s+/gi).map(s => s.trim()).filter(s => s.length > 2);
+                    parsedIngredients = cleaned.split(/[,;]|\s+e\s+/gi).map(s => {
+                        let trimS = s.trim();
+                        // Nascondi il pane dalle opzioni di rimozione
+                        if (trimS.toLowerCase().includes('bun')) return null;
+                        
+                        // INTELLIGENZA PER IL DOPPIO BURGER
+                        if (trimS.toLowerCase() === 'doppio smashed burger') return '1 smashed burger';
+                        if (trimS.toLowerCase() === 'doppio burger') return '1 burger';
+                        if (trimS.toLowerCase() === 'doppio hamburger') return '1 hamburger';
+                        
+                        return trimS;
+                    }).filter(s => s && s.length > 2);
                 }
 
                 let itm = {
@@ -2195,6 +1931,13 @@
             buildMenuData();
             renderFilters(); 
             renderMenu(); 
+            
+            document.addEventListener('click', function(e) {
+                if(e.target.id !== 'cust-address') {
+                    let container = document.getElementById('address-suggestions');
+                    if(container) container.innerHTML = '';
+                }
+            });
         }
 
         function renderFilters() {
@@ -2443,9 +2186,11 @@
                 }
             }
 
+            let removedArr = [];
             for (let ingr in currentModalState.removals) {
                 if (currentModalState.removals[ingr]) {
                     customParts.push(`SENZA: ${ingr}`);
+                    removedArr.push(ingr);
                 }
             }
 
@@ -2465,7 +2210,7 @@
             if (!itemMap[customId]) {
                 itemMap[customId] = { 
                     id: customId, baseId: item.id, name: item.name, price: newPrice, isCustom: true, 
-                    customParts: customParts, categoryName: item.categoryName 
+                    customParts: customParts, removed: removedArr, categoryName: item.categoryName 
                 };
                 
                 let variantHtml = `
@@ -2704,19 +2449,43 @@
             upsellContainer.innerHTML = html;
         }
 
-        // ORARI E GIORNI DI LAVORO (Con Lunedì Chiuso e Sabato anticipato)
+        function handleAddressInput(inputElem) {
+            let val = inputElem.value;
+            let container = document.getElementById('address-suggestions');
+            container.innerHTML = '';
+            
+            if (!val) return;
+            
+            let escapedVal = val.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+            let matches = databaseVie.filter(s => s.toLowerCase().includes(val.toLowerCase()));
+            
+            matches.slice(0, 8).forEach(match => {
+                let div = document.createElement('div');
+                let regex = new RegExp(`(${escapedVal})`, "gi");
+                div.innerHTML = match.replace(regex, "<strong style='color:var(--accent-main);'>$1</strong>");
+                
+                div.addEventListener('mousedown', function(e) {
+                    e.preventDefault(); 
+                    inputElem.value = match + ", ";
+                    container.innerHTML = '';
+                    inputElem.focus();
+                });
+                container.appendChild(div);
+            });
+        }
+
+        // ORARI DI LAVORO MODIFICATI (Lun Chiuso, Mar-Ven 18:30-22:30, Sab 18:00-23:00, Dom 18:30-22:30)
         function popolaOrari() {
             const select = document.getElementById('orario-consegna');
             const payBtn = document.getElementById('pay-btn');
             select.innerHTML = '';
             
             const now = new Date();
-            const currentDay = now.getDay(); // 0=Dom, 1=Lun, 2=Mar, ... 6=Sab
+            const currentDay = now.getDay(); 
             const currentHour = now.getHours();
             const currentMinute = now.getMinutes();
             const minTimeInMinutes = (currentHour * 60) + currentMinute + 20;
 
-            // Se è lunedì, ristorante chiuso
             if (currentDay === 1) {
                 select.innerHTML = `<option value="">Oggi siamo chiusi (Lunedì)</option>`;
                 payBtn.disabled = true;
@@ -2724,13 +2493,11 @@
                 return;
             }
 
-            // Impostazioni orari standard (Mar-Dom 18:30 - 22:30)
             let startHour = 18;
             let startMin = 30;
             let endHour = 22;
             let endMin = 30;
 
-            // Eccezione Sabato (18:00 - 23:00)
             if (currentDay === 6) {
                 startHour = 18;
                 startMin = 0;
@@ -2745,9 +2512,6 @@
                     if (h === endHour && m > endMin) continue; 
                     
                     const slotTimeInMinutes = (h * 60) + m;
-                    
-                    // Mostra l'orario se è nel futuro (almeno 20 min in più)
-                    // Se il locale non è ancora aperto (es. sono le 15:00), mostra tutti gli orari
                     if (slotTimeInMinutes >= minTimeInMinutes || currentHour < startHour) {
                         let hh = h.toString().padStart(2, '0');
                         let mm = m.toString().padStart(2, '0');
