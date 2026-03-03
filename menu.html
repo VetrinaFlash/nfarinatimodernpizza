@@ -33,6 +33,22 @@
         }
         body > * { position: relative; z-index: 100; }
 
+        /* BANNER SCONTO */
+        .promo-banner {
+            background-color: var(--success);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 10001;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
         header { background: var(--bg-card); text-align: center; padding: 30px 20px 40px; border-bottom: 1px solid var(--border-light); box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
         .logo-img { width: 170px; max-width: 100%; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
         header h2 { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;}
@@ -167,6 +183,8 @@
     </style>
 </head>
 <body>
+
+    <div class="promo-banner">🎉 10% di Sconto su tutti gli ordini online!</div>
 
     <header>
         <div class="header-content">
@@ -834,7 +852,7 @@
           {
             "categoria": "Pizze Americane",
             "prodotto": "Greenfield",
-            "ingredienti": "misto 4 formaggi (mozzarella, provoletta, gorgonzola, pecorino), funghi, bacon; all’uscita pesto e granella di pistacchi",
+            "ingredienti": "misto 4 formaggi (mozzarella, provoletta, gorgonzola, pecorino), funghi, bacon; all’uscita pesto di pistacchio e granella di pistacchi",
             "prezzi": [
               { "prezzo": 10.0, "variante": "Personale" },
               { "prezzo": 20.5, "variante": "Familiare" },
@@ -1893,7 +1911,8 @@
                 }
                 
                 let parsedIngredients = [];
-                if(rj.ingredienti) {
+                // Niente rimozioni per la categoria Appetizers
+                if(rj.ingredienti && rj.categoria !== "Appetizers") {
                     let cleaned = rj.ingredienti.replace(/in uscita[:]?/gi, '').replace(/all['’]uscita[:]?/gi, '');
                     // Splitta l'ingrediente se c'è una virgola, un punto e virgola, o la lettera "e" isolata tra spazi
                     parsedIngredients = cleaned.split(/[,;]|\s+e\s+/gi).map(s => {
@@ -2474,7 +2493,6 @@
             });
         }
 
-        // ORARI DI LAVORO MODIFICATI (Lun Chiuso, Mar-Ven 18:30-22:30, Sab 18:00-23:00, Dom 18:30-22:30)
         function popolaOrari() {
             const select = document.getElementById('orario-consegna');
             const payBtn = document.getElementById('pay-btn');

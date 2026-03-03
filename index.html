@@ -27,6 +27,7 @@
       --text:#2a3324; --muted:#6b7a5d;
       --red:#d32f2f; --red-h:#b71c1c;
       --border:#e2e6dd; --shadow:0 8px 24px rgba(42,51,36,.08);
+      --success: #28a745;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;overflow-x:hidden}
@@ -35,17 +36,33 @@
       background:var(--bg);color:var(--text);
       overflow-x:hidden;position:relative;
     }
-    /* Filigrana — pseudo-element, non disturba mai il layout */
-    body::before{
-      content:'';position:fixed;inset:0;z-index:90;
+    
+    /* Filigrana in OVERLAY - Passa sopra gli sfondi solidi ma sotto i click */
+    body::after{
+      content:'';position:fixed;inset:0;z-index:90; 
       background-image:url('images/filigrana.jpeg');
-      background-repeat:repeat;background-size:520px auto;
-      background-attachment:fixed;
-      opacity:.12;filter:blur(2px);pointer-events:none;
+      background-repeat:repeat;background-size:250px;
+      opacity:0.04;pointer-events:none; 
     }
-    body>*{position:relative;z-index:1}
+    
     a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:100;}
+
+    /* ══ BANNER SCONTO ══ */
+    .promo-banner {
+      background-color: var(--success);
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 10001;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+    }
 
     /* ══ TOPBAR ══ */
     .topbar{
@@ -72,7 +89,7 @@
     .nav a.cta:hover{background:var(--red-h);color:#fff}
 
     /* ══ HERO ══ */
-    .hero{background:var(--bg-alt);padding:60px 0 50px;border-bottom:1px solid var(--border)}
+    .hero{background:var(--bg-alt);padding:60px 0 50px;border-bottom:1px solid var(--border);position:relative;}
     .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
     .hero-logo-large{width:120px;border-radius:16px;margin-bottom:18px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
     h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:3.2rem;line-height:1.08;letter-spacing:-1px;margin-bottom:5px;color:var(--text);text-transform:uppercase}
@@ -125,7 +142,6 @@
     .pizze-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--red)}
     .pizze-intro{color:rgba(255,255,255,.55);font-size:.95rem;line-height:1.75;max-width:52ch;margin-top:14px;margin-bottom:36px}
     .pizze-intro strong{color:rgba(255,255,255,.85)}
-    /* Griglia 2×2 fissa */
     .pizze-bento{
       display:grid;
       grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -157,7 +173,6 @@
     .chef-band{background:var(--bg-dark2);padding:60px 0;position:relative}
     .chef-band::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 65% at 78% 45%,rgba(211,47,47,.07) 0%,transparent 70%)}
     .chef-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
-    /* Foto — min-height esplicito perché le img sono absolute */
     .chef-mosaic{
       position:relative;border-radius:22px;overflow:hidden;
       width:100%;height:500px;
@@ -197,7 +212,7 @@
     .chef-stat-label{font-size:.68rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:4px}
 
     /* ══ DOVE SIAMO & FOOTER ══ */
-    .light-section{padding:50px 0;background:var(--bg-alt)}
+    .light-section{padding:50px 0;background:var(--bg-alt); position:relative;}
     .card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
     .card p{color:var(--muted);line-height:1.7}
     .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:18px}
@@ -207,38 +222,33 @@
     .kpi .pill span{display:block;margin-top:3px;color:var(--muted);font-size:.78rem}
     .map-wrap{overflow:hidden;border-radius:18px;border:1px solid var(--border);background:var(--bg-alt);box-shadow:var(--shadow);min-height:360px}
     iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
-    footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:40px 0 90px;color:var(--muted)}
+    footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:40px 0 90px;color:var(--muted);position:relative;}
     .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
     .small-links{display:flex;gap:12px;flex-wrap:wrap}
     .small-links a{border:1px solid var(--border);padding:9px 15px;border-radius:999px;background:#fff;color:var(--text);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.83rem;transition:.2s}
     .small-links a:hover{border-color:var(--red);color:var(--red)}
 
     /* ══════════════════════════════════════════
-       RESPONSIVE — unico blocco pulito
+       RESPONSIVE
     ══════════════════════════════════════════ */
 
-    /* Tablet ≤ 900px */
     @media(max-width:900px){
       .hero-grid{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
       h1{font-size:2.4rem}
       .kpi,.dark-kpi{grid-template-columns:repeat(3,1fr)}
       .wave-wrap svg{height:40px}
-      /* pizze: rimane 2 colonne, altezza ridotta */
       .pizze-bento{grid-template-rows:260px 260px}
-      /* chi siamo: testo SOPRA, foto SOTTO */
       .chef-inner{grid-template-columns:1fr;gap:32px}
       .chef-content{order:-1}
-		.chef-mosaic{order:1;height:600px}
+      .chef-mosaic{order:1;height:500px}
       .chef-headline{font-size:2.8rem}
     }
 
-    /* Mobile nav ≤ 640px: solo icone, una riga, logo a sx */
     @media(max-width:640px){
       .topbar-inner{padding:8px 0}
       .brand .name span{display:none}
       .nav{gap:5px;flex-wrap:nowrap}
-      /* tutti i link: quadratini icona pura */
       .nav a{
         width:38px;height:38px;padding:0;
         border-radius:10px;
@@ -246,26 +256,21 @@
         font-size:.9rem;gap:0;
       }
       .nav a .nav-label{display:none}
-      /* CTA rosso: icona + testo breve */
       .nav a.cta{width:auto;padding:0 12px;gap:5px;border-radius:10px}
       .nav a.cta .nav-label{display:inline;font-size:.72rem;letter-spacing:.3px}
     }
 
-    /* Mobile ≤ 520px */
     @media(max-width:520px){
       h1{font-size:1.8rem}
       .hero-logo-large{width:90px}
       .lead{font-size:.92rem}
       .chef-headline{font-size:2.2rem}
-      /* chef foto: altezza fissa ridotta */
-      .chef-mosaic{height:520px}
-      /* pizze: rimane 2×2, altezze più basse */
+      .chef-mosaic{height:450px}
       .pizze-bento{
         grid-template-columns:minmax(0,1fr) minmax(0,1fr);
         grid-template-rows:200px 200px;
         gap:8px;
       }
-      /* su schermi piccoli nascondi desc per spazio */
       .pizza-card-desc{display:none}
       .pizza-card-name{font-size:.85rem}
       .pizza-card-badge{font-size:.55rem;padding:4px 9px}
@@ -275,6 +280,8 @@
   </style>
 </head>
 <body>
+
+  <div class="promo-banner">🎉 10% di Sconto su tutti gli ordini online!</div>
 
   <div class="topbar" role="navigation">
     <div class="container">
@@ -502,7 +509,7 @@
           </div>
         </div>
         <div style="margin-top:24px;font-size:.83rem;border-top:1px solid var(--border);padding-top:14px;">
-          &copy; <span id="year"></span> N'Farinati Modern Pizza. Tutti i diritti riservati.
+          © <span id="year"></span> N'Farinati Modern Pizza. Tutti i diritti riservati.
         </div>
       </div>
     </footer>
