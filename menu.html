@@ -210,6 +210,7 @@
         <button class="btn-checkout" onclick="openCheckout()"><i class="fa-solid fa-cart-shopping"></i> Vai alla Cassa</button>
     </div>
 
+    <!-- MODALE CASSA (CHECKOUT) -->
     <div class="checkout-modal" id="checkout-modal" onclick="if(event.target === this) closeCheckout()">
         <div class="checkout-content">
             <div class="modal-header">
@@ -220,8 +221,10 @@
             <div class="modal-body">
                 
                 <div id="dati-cliente-form">
+                    <!-- LISTA VISUALE DEI PRODOTTI SCELTI (CARRELLO) -->
                     <div id="cart-items-summary" class="cart-summary-box"></div>
 
+                    <!-- BOX UPSELLING INTELLIGENTE -->
                     <div id="upsell-container"></div>
 
                     <div class="type-toggle">
@@ -265,6 +268,7 @@
 
                     <div class="form-group"><label>Note Aggiuntive per la cucina</label><textarea id="cust-notes" rows="2" placeholder="Es. Allergie, intolleranze..."></textarea></div>
 
+                    <!-- RIEPILOGO PREZZI TOTALI / SCONTO -->
                     <div id="order-summary-breakdown" class="summary-breakdown"></div>
 
                     <div class="form-group" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 20px;">
@@ -276,6 +280,7 @@
                     </div>
                 </div>
 
+                <!-- CONTAINER WIDGET SUMUP -->
                 <div id="sumup-card-container" style="display: none;">
                     <h4 style="margin-bottom: 15px; font-family: 'Montserrat', sans-serif; color: var(--text-dark);">Inserisci i dati della Carta</h4>
                     <div id="sumup-card"></div>
@@ -291,6 +296,7 @@
         </div>
     </div>
 
+    <!-- MODALE PERSONALIZZAZIONE -->
     <div class="checkout-modal" id="custom-modal" onclick="if(event.target === this) closeCustomModal()">
         <div class="checkout-content">
             <div class="modal-header">
@@ -321,10 +327,114 @@
 
         const rawMenuData = [
           {
+            "categoria": "Appetizers",
+            "prodotto": "Mega mozza-stick",
+            "ingredienti": "Stick di mozzarella panata lunghezza circa 20 cm",
+            "prezzi": [ { "prezzo": 3.00 } ],
+            "scelte_obbligatorie": {},
+            "scelte_multiple": {
+              "Salse": [
+                { "valore": "Salsa rosa", "supplemento": 0.0 },
+                { "valore": "Salsa BBQ", "supplemento": 0.0 },
+                { "valore": "Honey mustard", "supplemento": 0.0 },
+                { "valore": "Ketchup", "supplemento": 0.0 },
+                { "valore": "BBQ mayo", "supplemento": 0.0 },
+                { "valore": "Ranch dressing", "supplemento": 0.0 },
+                { "valore": "Mango habanero sauce", "supplemento": 0.0 },
+                { "valore": "Mayonese", "supplemento": 0.0 },
+                { "valore": "Senza salse", "supplemento": 0.0 }
+              ]
+            }
+          },
+          {
             "categoria": "American Hamburger",
             "prodotto": "Nuovo smash burger",
             "ingredienti": "Doppio smashed burger, cheddar filante, bacon croccante, salsa burger, avvolto in un potato bun originale Martins",
             "prezzi": [ { "prezzo": 6.50 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Drive in Burger",
+            "ingredienti": "burger di vitello, cheddar, salamino piccante, bacon, lattuga, cipolla rossa, pomodoro, Peppery White BBQ",
+            "prezzi": [ { "prezzo": 9.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Pistacchino Burger",
+            "ingredienti": "Hamburger di vitello, mortadella, burrata, radicchio, pesto di pistacchio, servito con patatine al pistacchio",
+            "prezzi": [ { "prezzo": 13.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Country Burger",
+            "ingredienti": "hamburger di vitello, emmental, carote, chips di zucchine, chipotle mayo, rucola",
+            "prezzi": [ { "prezzo": 10.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Greta Burger",
+            "ingredienti": "hamburger di vitello, avocado, funghi, cipolle, cheddar, rucola, chipotle mayo",
+            "prezzi": [ { "prezzo": 10.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Fat Bastard Burger",
+            "ingredienti": "doppio burger, sottiletta, onion rings, bacon, cheddar, barbecue maionese, lattuga",
+            "prezzi": [ { "prezzo": 13.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "GB Style Burger",
+            "ingredienti": "Burger, emmental, salsa rosa, pomodorini, lattuga a filetti e cipolle",
+            "prezzi": [ { "prezzo": 9.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "The Lo Galbo's Burger",
+            "ingredienti": "burger, cheddar, salsa rosa, lattuga a filetti e pomodoro a fette",
+            "prezzi": [ { "prezzo": 8.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Jersey Boy Burger",
+            "ingredienti": "burger, peperoni, cipolla, funghi, emmental, lattuga a filetti, pomodoro",
+            "prezzi": [ { "prezzo": 9.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Sinaloa Mexico Burger",
+            "ingredienti": "burger, bruschetta, salsa buffalo, salsiccia piccante, avocado, lattuga a filetti e cheddar",
+            "prezzi": [ { "prezzo": 9.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "Good Fellas Burger",
+            "ingredienti": "burger, mozzarella, radicchio, spinaci, bacon, funghi, chipotle mayo",
+            "prezzi": [ { "prezzo": 8.5 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "N'farinati Original Burger",
+            "ingredienti": "burger di vitello, salsa chipotle, avocado, bacon, funghi, onion rings, rucola, mozzarella filante",
+            "prezzi": [ { "prezzo": 10.0 } ],
+            "scelte_obbligatorie": { "Patatine": patatineOptions }
+          },
+          {
+            "categoria": "American Hamburger",
+            "prodotto": "New York Times Burger",
+            "ingredienti": "burger, bacon, onion rings, salsa barbecue, sottilette, lattuga a filetti",
+            "prezzi": [ { "prezzo": 9.0 } ],
             "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
@@ -609,90 +719,6 @@
               { "prezzo": 10.0, "variante": "Impasto integrale ai semi misti" }
             ],
             "scelte_obbligatorie": {}
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Drive in Burger",
-            "ingredienti": "burger di vitello, cheddar, salamino piccante, bacon, lattuga, cipolla rossa, pomodoro, Peppery White BBQ",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Pistacchino Burger",
-            "ingredienti": "Hamburger di vitello, mortadella, burrata, radicchio, pesto di pistacchio, servito con patatine al pistacchio",
-            "prezzi": [ { "prezzo": 13.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Country Burger",
-            "ingredienti": "hamburger di vitello, emmental, carote, chips di zucchine, chipotle mayo, rucola",
-            "prezzi": [ { "prezzo": 10.5 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Greta Burger",
-            "ingredienti": "hamburger di vitello, avocado, funghi, cipolle, cheddar, rucola, chipotle mayo",
-            "prezzi": [ { "prezzo": 10.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Fat Bastard Burger",
-            "ingredienti": "doppio burger, sottiletta, onion rings, bacon, cheddar, barbecue maionese, lattuga",
-            "prezzi": [ { "prezzo": 13.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "GB Style Burger",
-            "ingredienti": "Burger, emmental, salsa rosa, pomodorini, lattuga a filetti e cipolle",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "The Lo Galbo's Burger",
-            "ingredienti": "burger, cheddar, salsa rosa, lattuga a filetti e pomodoro a fette",
-            "prezzi": [ { "prezzo": 8.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Jersey Boy Burger",
-            "ingredienti": "burger, peperoni, cipolla, funghi, emmental, lattuga a filetti, pomodoro",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Sinaloa Mexico Burger",
-            "ingredienti": "burger, bruschetta, salsa buffalo, salsiccia piccante, avocado, lattuga a filetti e cheddar",
-            "prezzi": [ { "prezzo": 9.5 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "Good Fellas Burger",
-            "ingredienti": "burger, mozzarella, radicchio, spinaci, bacon, funghi, chipotle mayo",
-            "prezzi": [ { "prezzo": 8.5 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "N'farinati Original Burger",
-            "ingredienti": "burger di vitello, salsa chipotle, avocado, bacon, funghi, onion rings, rucola, mozzarella filante",
-            "prezzi": [ { "prezzo": 10.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
-          },
-          {
-            "categoria": "American Hamburger",
-            "prodotto": "New York Times Burger",
-            "ingredienti": "burger, bacon, onion rings, salsa barbecue, sottilette, lattuga a filetti",
-            "prezzi": [ { "prezzo": 9.0 } ],
-            "scelte_obbligatorie": { "Patatine": patatineOptions }
           },
           {
             "categoria": "Pizze Americane",
@@ -1894,7 +1920,7 @@
         let cart = {};
         let itemMap = {};
         let rawItemsList = [];
-        let currentModalState = { itemId: null, selections: {}, removals: {} };
+        let currentModalState = { itemId: null, selections: {}, multi: {}, removals: {} };
 
         function buildMenuData() {
             let catMap = {};
@@ -1937,7 +1963,8 @@
                     ingredientsList: parsedIngredients,
                     prezzi: rj.prezzi,
                     price: rj.prezzi[0].prezzo,
-                    scelte_obbligatorie: rj.scelte_obbligatorie || {}
+                    scelte_obbligatorie: rj.scelte_obbligatorie || {},
+                    scelte_multiple: rj.scelte_multiple || {}
                 };
 
                 catMap[rj.categoria].items.push(itm);
@@ -1986,8 +2013,9 @@
                     
                     let hasVariants = item.prezzi.length > 1;
                     let hasMandatory = Object.keys(item.scelte_obbligatorie).length > 0;
+                    let hasMulti = item.scelte_multiple && Object.keys(item.scelte_multiple).length > 0;
                     
-                    let displayPrice = (hasVariants || hasMandatory) ? `da ${item.price.toFixed(2).replace('.',',')}€` : `${item.price.toFixed(2).replace('.',',')}€`;
+                    let displayPrice = (hasVariants || hasMandatory || hasMulti) ? `da ${item.price.toFixed(2).replace('.',',')}€` : `${item.price.toFixed(2).replace('.',',')}€`;
 
                     sectionDiv.innerHTML += `
                         <div class="menu-item">
@@ -2012,9 +2040,10 @@
             const item = itemMap[id];
             let hasVariants = item.prezzi.length > 1;
             let hasMandatory = Object.keys(item.scelte_obbligatorie).length > 0;
+            let hasMulti = item.scelte_multiple && Object.keys(item.scelte_multiple).length > 0;
             let hasRemovals = item.ingredientsList.length > 0;
             
-            if (hasVariants || hasMandatory || hasRemovals) {
+            if (hasVariants || hasMandatory || hasMulti || hasRemovals) {
                 openCustomModal(id);
             } else {
                 updateQty(id, 1);
@@ -2025,9 +2054,10 @@
             const item = itemMap[id];
             let hasVariants = item.prezzi.length > 1;
             let hasMandatory = Object.keys(item.scelte_obbligatorie).length > 0;
+            let hasMulti = item.scelte_multiple && Object.keys(item.scelte_multiple).length > 0;
             let hasRemovals = item.ingredientsList.length > 0;
             
-            if (hasVariants || hasMandatory || hasRemovals) {
+            if (hasVariants || hasMandatory || hasMulti || hasRemovals) {
                 openCustomModal(id);
             } else {
                 updateQty(id, 1); 
@@ -2055,6 +2085,7 @@
             currentModalState = {
                 itemId: id,
                 selections: {},
+                multi: {},
                 removals: {}
             };
 
@@ -2107,6 +2138,30 @@
                 }
             }
 
+            if (item.scelte_multiple && Object.keys(item.scelte_multiple).length > 0) {
+                for (let gruppo in item.scelte_multiple) {
+                    let safeGruppo = gruppo.replace(/"/g, '&quot;');
+                    html += `<div class="custom-section-title">${gruppo} <span class="badge-req">Obbligatorio (1 o più)</span></div><div class="custom-group">`;
+                    item.scelte_multiple[gruppo].forEach(opt => {
+                        let isChecked = false;
+                        if (currentModalState.multi && currentModalState.multi[gruppo] && currentModalState.multi[gruppo].includes(opt.valore)) {
+                            isChecked = true;
+                        }
+                        let pText = opt.supplemento > 0 ? `+${opt.supplemento.toFixed(2)}€` : '';
+                        let safeValore = opt.valore.replace(/"/g, '&quot;');
+                        
+                        html += `
+                            <label class="custom-option-card ${isChecked ? 'selected' : ''}">
+                                <div class="custom-option-left">
+                                    <input type="checkbox" name="${safeGruppo}" value="${safeValore}" ${isChecked ? 'checked' : ''} onchange="updateMultiState('${safeGruppo}', '${safeValore}')"> ${opt.valore}
+                                </div>
+                                <span class="custom-price">${pText}</span>
+                            </label>`;
+                    });
+                    html += `</div>`;
+                }
+            }
+
             if (item.ingredientsList.length > 0) {
                 html += `<div class="custom-section-title">Rimuovi Ingredienti <span class="badge-opt">Gratis</span></div><div class="custom-group">`;
                 item.ingredientsList.forEach(ingr => {
@@ -2133,6 +2188,27 @@
         function updateModalState(groupName, value) {
             currentModalState.selections[groupName] = value;
             renderModalContent(); 
+        }
+
+        function updateMultiState(gruppo, valore) {
+            if (!currentModalState.multi) currentModalState.multi = {};
+            if (!currentModalState.multi[gruppo]) currentModalState.multi[gruppo] = [];
+            
+            if (valore === 'Senza salse') {
+                if (currentModalState.multi[gruppo].includes('Senza salse')) {
+                    currentModalState.multi[gruppo] = [];
+                } else {
+                    currentModalState.multi[gruppo] = ['Senza salse'];
+                }
+            } else {
+                if (currentModalState.multi[gruppo].includes(valore)) {
+                    currentModalState.multi[gruppo] = currentModalState.multi[gruppo].filter(v => v !== valore);
+                } else {
+                    currentModalState.multi[gruppo] = currentModalState.multi[gruppo].filter(v => v !== 'Senza salse');
+                    currentModalState.multi[gruppo].push(valore);
+                }
+            }
+            renderModalContent();
         }
 
         function toggleRemoval(ingr) {
@@ -2168,6 +2244,19 @@
                 }
             }
 
+            if (item.scelte_multiple) {
+                for (let gruppo in item.scelte_multiple) {
+                    if (!currentModalState.multi || !currentModalState.multi[gruppo] || currentModalState.multi[gruppo].length === 0) {
+                        isValid = false;
+                    } else {
+                        currentModalState.multi[gruppo].forEach(val => {
+                            let sc = item.scelte_multiple[gruppo].find(o => o.valore === val);
+                            if(sc) extraPrice += sc.supplemento;
+                        });
+                    }
+                }
+            }
+
             let newPrice = basePrice + extraPrice;
             const btn = document.getElementById('btn-add-custom');
             
@@ -2182,7 +2271,7 @@
 
         function closeCustomModal() {
             document.getElementById('custom-modal').classList.remove('active');
-            currentModalState = { itemId: null, selections: {}, removals: {} };
+            currentModalState = { itemId: null, selections: {}, multi: {}, removals: {} };
         }
 
         function addCustomItemToCart() {
@@ -2202,6 +2291,20 @@
                 if(sc) { 
                     extraPrice += sc.supplemento; 
                     customParts.push(`${gruppo}: ${sel}`); 
+                }
+            }
+
+            if (item.scelte_multiple && currentModalState.multi) {
+                for (let gruppo in item.scelte_multiple) {
+                    if (currentModalState.multi[gruppo] && currentModalState.multi[gruppo].length > 0) {
+                        currentModalState.multi[gruppo].forEach(val => {
+                            let sc = item.scelte_multiple[gruppo].find(o => o.valore === val);
+                            if(sc) { 
+                                extraPrice += sc.supplemento; 
+                                customParts.push(`${gruppo}: ${val}`); 
+                            }
+                        });
+                    }
                 }
             }
 
