@@ -2141,7 +2141,12 @@
             if (item.scelte_multiple && Object.keys(item.scelte_multiple).length > 0) {
                 for (let gruppo in item.scelte_multiple) {
                     let safeGruppo = gruppo.replace(/"/g, '&quot;');
-                    html += `<div class="custom-section-title">${gruppo} <span class="badge-req">Obbligatorio (1 o più)</span></div><div class="custom-group">`;
+                    
+                    // --- INIZIO MODIFICA TESTO ---
+                    let badgeText = (gruppo === 'Salse') ? 'Obbligatorio (Max 2)' : 'Obbligatorio (1 o più)';
+                    html += `<div class="custom-section-title">${gruppo} <span class="badge-req">${badgeText}</span></div><div class="custom-group">`;
+                    // --- FINE MODIFICA TESTO ---
+
                     item.scelte_multiple[gruppo].forEach(opt => {
                         let isChecked = false;
                         if (currentModalState.multi && currentModalState.multi[gruppo] && currentModalState.multi[gruppo].includes(opt.valore)) {
