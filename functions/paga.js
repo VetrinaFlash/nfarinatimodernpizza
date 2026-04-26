@@ -12,9 +12,8 @@ export async function onRequestPost(context) {
     const body = await request.json();
     const cartItems = body.items || [];
     
-    // Calcola il totale
-    let totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    totalAmount = Math.round(totalAmount * 100) / 100;
+    // Usa il totale già calcolato dal client (include sconto e spese di consegna)
+    let totalAmount = Math.round((parseFloat(body.totalAmount) || 0) * 100) / 100;
 
     // Invia la richiesta a SumUp
     const response = await fetch('https://api.sumup.com/v0.1/checkouts', {
